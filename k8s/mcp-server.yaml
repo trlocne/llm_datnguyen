@@ -1,0 +1,26 @@
+# k8s/mcp-server.yaml
+# =========================================================
+# PURPOSE: K8s Deployment + Service cho MCP Gateway Server.
+#
+# WHAT TO CONFIGURE:
+#   Deployment:
+#     replicas: 2
+#     image: <your-registry>/mcp-server:latest
+#     env:
+#       VAULT_ADDR, VAULT_TOKEN (đọc per-user tokens)
+#       DATABASE_URL (metadata connections)
+#       GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET (đọc từ Vault)
+#       GOOGLE_REDIRECT_URI: https://your-domain.com/auth/google_drive/callback
+#     resources:
+#       requests: memory=128Mi, cpu=100m
+#       limits:   memory=512Mi, cpu=250m
+#     livenessProbe:  httpGet /healthz
+#     readinessProbe: httpGet /healthz
+#
+#   Service:
+#     type: ClusterIP
+#     port: 8003
+#
+# NOTE: Google OAuth2 REDIRECT_URI phải trỏ đúng domain production
+#       và được đăng ký trong Google Cloud Console OAuth2 credentials
+# =========================================================

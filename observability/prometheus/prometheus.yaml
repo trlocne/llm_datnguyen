@@ -1,0 +1,31 @@
+# observability/prometheus/prometheus.yaml
+# =========================================================
+# PURPOSE: Config Prometheus scraper lấy metrics từ các microservices.
+#
+# WHAT TO CONFIGURE:
+#   global:
+#     scrape_interval: 15s
+#     evaluation_interval: 15s
+#
+#   scrape_configs:
+#     - job_name: chat-service
+#       static_configs:
+#         - targets: ['chat-service:8000']
+#       metrics_path: /metrics
+#
+#     - job_name: customer-service
+#       static_configs:
+#         - targets: ['customer-service:8000']
+#       metrics_path: /metrics
+#
+#     - job_name: prometheus (self-scrape)
+#       static_configs:
+#         - targets: ['localhost:9090']
+#
+# KEY METRICS TO SCRAPE (exposed bởi prometheus-fastapi-instrumentator):
+#   http_requests_total{method, status, handler}
+#   http_request_duration_seconds{le} (histogram buckets: p50, p95, p99)
+#   python_gc_* (garbage collection stats)
+#
+# DOCS: https://prometheus.io/docs/prometheus/latest/configuration/
+# =========================================================

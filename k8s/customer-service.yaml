@@ -1,0 +1,19 @@
+# k8s/customer-service.yaml
+# =========================================================
+# PURPOSE: K8s Deployment + Service cho customer-service.
+#
+# WHAT TO CONFIGURE:
+#   Deployment:
+#     replicas: 2
+#     image: <your-registry>/customer-service:latest
+#     env: VAULT_ADDR, VAULT_TOKEN
+#     resources:
+#       requests: memory=128Mi, cpu=100m
+#       limits:   memory=512Mi, cpu=250m
+#     livenessProbe:  httpGet /healthz
+#     readinessProbe: httpGet /healthz
+#
+#   Service:
+#     type: ClusterIP
+#     port: 8000
+# =========================================================

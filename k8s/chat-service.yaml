@@ -1,0 +1,27 @@
+# k8s/chat-service.yaml
+# =========================================================
+# PURPOSE: K8s Deployment + Service + HPA cho chat-service.
+#
+# WHAT TO CONFIGURE:
+#   Deployment:
+#     replicas: 2 (minimum cho HA)
+#     image: <your-registry>/chat-service:latest
+#     env:
+#       VAULT_ADDR, VAULT_TOKEN (từ k8s Secret hoặc Vault Agent)
+#       OTLP_ENDPOINT: http://tempo:4317
+#     resources:
+#       requests: memory=256Mi, cpu=250m
+#       limits:   memory=1Gi,   cpu=500m
+#     livenessProbe:  httpGet /healthz port=8000
+#     readinessProbe: httpGet /healthz port=8000 initialDelaySeconds=15
+#     ports: containerPort=8000
+#
+#   Service:
+#     type: ClusterIP
+#     port: 8000
+#     targetPort: 8000
+#
+#   HorizontalPodAutoscaler:
+#     minReplicas: 2, maxReplicas: 10
+#     targetCPUUtilizationPercentage: 70
+# =========================================================

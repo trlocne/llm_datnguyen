@@ -1,0 +1,27 @@
+# k8s/postgres-deployment.yaml
+# =========================================================
+# PURPOSE: PostgreSQL 16 + pgvector Deployment và PersistentVolumeClaim.
+#
+# WHAT TO CONFIGURE:
+#   PersistentVolumeClaim:
+#     name: postgres-pvc
+#     storage: 10Gi
+#     accessModes: ReadWriteOnce
+#
+#   Deployment:
+#     image: pgvector/pgvector:pg16
+#     env:
+#       POSTGRES_DB, POSTGRES_USER, POSTGRES_PASSWORD
+#       → Lấy từ Secret (k8s/vault-secrets.yaml hoặc External Secrets Operator)
+#     resources:
+#       requests: memory=512Mi, cpu=250m
+#       limits:   memory=2Gi,   cpu=1000m
+#     livenessProbe:  exec pg_isready
+#     readinessProbe: exec pg_isready
+#     volumeMounts: mountPath=/var/lib/postgresql/data
+#
+#   Service:
+#     type: ClusterIP
+#     port: 5432
+#     selector: app=postgres
+# =========================================================

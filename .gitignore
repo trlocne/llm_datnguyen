@@ -1,0 +1,15 @@
+# .gitignore
+.env
+*.pyc
+__pycache__/
+.DS_Store
+node_modules/
+.next/
+*.egg-info/
+dist/
+build/
+datasets/data/
+*.log
+.pytest_cache/
+credentials/
+*.json.bak

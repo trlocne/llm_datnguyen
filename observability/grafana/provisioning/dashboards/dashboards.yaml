@@ -1,0 +1,29 @@
+# observability/grafana/provisioning/dashboards/dashboards.yaml
+# =========================================================
+# PURPOSE: Config để Grafana tự load dashboard JSON từ thư mục.
+#
+# WHAT TO CONFIGURE:
+#   apiVersion: 1
+#   providers:
+#     - name: Default
+#       orgId: 1
+#       folder: ''
+#       type: file
+#       disableDeletion: false
+#       updateIntervalSeconds: 30
+#       allowUiUpdates: true
+#       options:
+#         path: /etc/grafana/provisioning/dashboards
+#         foldersFromFilesStructure: true
+#
+# DASHBOARD JSON FILES CẦN TẠO (đặt cùng thư mục):
+#   customer_chatbot_overview.json
+#     Panels cần có:
+#       - HTTP Request Rate (req/sec) từ chat-service và customer-service
+#       - P95 / P99 Latency histogram
+#       - Error rate (5xx percentage)
+#       - Live Log explorer: {app="chat-service"} level=error
+#       - Tempo: Trace explorer liên kết với Loki
+#
+# DOCS: https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/import-dashboards/
+# =========================================================

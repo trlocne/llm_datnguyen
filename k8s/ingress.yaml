@@ -1,0 +1,26 @@
+# k8s/ingress.yaml
+# =========================================================
+# PURPOSE: Kubernetes Ingress định tuyến traffic từ ngoài vào từng service.
+#
+# WHAT TO CONFIGURE:
+#   apiVersion: networking.k8s.io/v1
+#   kind: Ingress
+#   annotations:
+#     kubernetes.io/ingress.class: nginx
+#     nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"   ← quan trọng cho SSE
+#     nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+#     nginx.ingress.kubernetes.io/proxy-buffering: "off"       ← tắt buffer để stream
+#
+#   spec.rules:
+#     host: chatbot.yourdomain.com   (hoặc dùng nip.io cho local test)
+#     http.paths:
+#       /api/v1/chat       → chat-service:8000
+#       /api/v1/customers  → customer-service:8000
+#       /                  → frontend:3000
+#
+#   tls (optional):
+#     hosts: chatbot.yourdomain.com
+#     secretName: chatbot-tls-secret   (cert-manager hoặc manual)
+#
+# PREREQ: Cần cài nginx-ingress-controller và cert-manager trên cluster
+# =========================================================

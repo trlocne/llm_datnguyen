@@ -1,0 +1,19 @@
+# k8s/frontend.yaml
+# =========================================================
+# PURPOSE: K8s Deployment + Service cho Next.js frontend.
+#
+# WHAT TO CONFIGURE:
+#   Deployment:
+#     replicas: 2
+#     image: <your-registry>/frontend:latest
+#     env:
+#       NEXT_PUBLIC_API_URL: http://api-gateway (hoặc ingress domain)
+#     resources:
+#       requests: memory=128Mi, cpu=100m
+#       limits:   memory=512Mi, cpu=250m
+#     livenessProbe:  httpGet / port=3000
+#
+#   Service:
+#     type: ClusterIP
+#     port: 3000
+# =========================================================

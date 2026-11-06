@@ -1,0 +1,29 @@
+# observability/grafana/provisioning/datasources/datasources.yaml
+# =========================================================
+# PURPOSE: Auto-provision data sources trong Grafana khi container khởi động.
+#          Không cần tay thêm datasource qua UI.
+#
+# WHAT TO CONFIGURE (apiVersion: 1, datasources: list):
+#   1. Prometheus
+#      name: Prometheus
+#      type: prometheus
+#      url: http://prometheus:9090
+#      isDefault: true
+#
+#   2. Loki
+#      name: Loki
+#      type: loki
+#      url: http://loki:3100
+#
+#   3. Tempo
+#      name: Tempo
+#      type: tempo
+#      url: http://tempo:3200
+#      jsonData:
+#        tracesToLogsV2:
+#          datasourceUid: <loki_uid>    ← link trace → log
+#        serviceMap:
+#          datasourcePrometheusUID: <prometheus_uid>
+#
+# DOCS: https://grafana.com/docs/grafana/latest/administration/provisioning/
+# =========================================================

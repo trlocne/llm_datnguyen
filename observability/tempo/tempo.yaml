@@ -1,0 +1,29 @@
+# observability/tempo/tempo.yaml
+# =========================================================
+# PURPOSE: Config cho Grafana Tempo distributed tracing backend.
+#
+# WHAT TO CONFIGURE:
+#   server:
+#     http_listen_port: 3200
+#
+#   distributor.receivers.otlp.protocols:
+#     grpc: endpoint: 0.0.0.0:4317
+#     http: endpoint: 0.0.0.0:4318
+#     → Chat-service và customer-service gửi traces tới grpc port 4317
+#
+#   ingester:
+#     max_block_duration: 5m
+#     trace_idle_period: 10s
+#
+#   compactor.compaction:
+#     block_retention: 1h
+#
+#   storage.trace:
+#     backend: local
+#     local.path: /var/tempo/traces
+#
+#   metrics_generator (optional):
+#     Tích hợp với Prometheus để tạo span metrics
+#
+# DOCS: https://grafana.com/docs/tempo/latest/configuration/
+# =========================================================

@@ -1,0 +1,13 @@
+# k8s/namespace.yaml
+# =========================================================
+# PURPOSE: Tạo K8s namespace riêng để isolate toàn bộ resources.
+#
+# WHAT TO CONFIGURE:
+#   apiVersion: v1
+#   kind: Namespace
+#   metadata:
+#     name: customer-chatbot
+#     labels:
+#       app.kubernetes.io/name: customer-chatbot
+#       environment: production
+# =========================================================
